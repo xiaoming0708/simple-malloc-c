@@ -1,7 +1,7 @@
 // main.c
 #include <stdio.h>
 #include <stdlib.h>
-#include "my_malloc.h" // <--- 引用你自己写的库
+#include "my_malloc.h" 
 
 int main()
 {
