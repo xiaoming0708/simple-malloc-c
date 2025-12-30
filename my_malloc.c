@@ -1,11 +1,11 @@
 // my_malloc.c
 #include <stdio.h>
-#include "my_malloc.h" // <--- 必须引用头文件！
+#include "my_malloc.h"
 
-// 静态内存池（这是私有的，不暴露给头文件）
+// 静态内存池
 static char memory_pool[1024]; 
 
-// 初始化函数（内部函数，不需要暴露给 .h，除非你想）
+// 初始化函数
 block *initialize()
 {
     block *initblock = (block *)memory_pool;
@@ -15,7 +15,7 @@ block *initialize()
     return initblock;
 }
 
-// === 下面是你写好的函数实现，直接照搬 ===
+
 
 void *my_alloc(size_t size)
 {
@@ -24,10 +24,8 @@ void *my_alloc(size_t size)
         freelist = initialize();
     }
     
-    // ... 这里把你之前的 my_alloc 代码完整粘贴过来 ...
-    // ... 为了篇幅，我这里省略了中间代码，请保持你原有的逻辑不变 ...
-    
-    // (假设这里是你完整的 First-fit + Splitting 代码)
+
+
     block *curr = freelist;
     while (curr != NULL) {
         if (curr->is_free && curr->size >= size) {
@@ -51,7 +49,7 @@ void *my_alloc(size_t size)
 
 void my_free(void *ptr)
 {
-    // ... 这里把你之前的 my_free 代码完整粘贴过来 ...
+
     if (ptr == NULL) return;
     block *curr = (block *)((char *)ptr - sizeof(block));
     curr->is_free = 1;
@@ -64,7 +62,7 @@ void my_free(void *ptr)
 
 void debug_heap()
 {
-    // ... 这里把你之前的 debug_heap 代码完整粘贴过来 ...
+
     block *curr = (block *)memory_pool;
     printf("-------- 堆内存现状 (Header大小: %zu) --------\n", sizeof(block));
     int i = 0;
